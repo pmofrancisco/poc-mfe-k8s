@@ -1,0 +1,40 @@
+apiVersion: skaffold/v2beta26
+kind: Config
+build:
+  local:
+    push: false
+  artifacts:
+    - image: pmofrancisco/poc-mfe-k8s-client-container
+      context: client-container
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+          - src: "src/**/*.tsx"
+            dest: .
+    - image: pmofrancisco/poc-mfe-k8s-client-auth
+      context: client-auth
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+          - src: "src/**/*.tsx"
+            dest: .
+    - image: pmofrancisco/poc-mfe-k8s-client-dashboard
+      context: client-dashboard
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+          - src: "src/**/*.tsx"
+            dest: .
+deploy:
+  kubectl:
+    manifests:
+      - k8s/*
