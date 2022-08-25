@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-dashboard-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: client-dashboard
+  template:
+    metadata:
+      labels:
+        component: client-dashboard
+    spec:
+      containers:
+        - name: client-dashboard
+          image: pmofrancisco/poc-mfe-k8s-client-dashboard
+          ports:
+            - containerPort: 3000

@@ -34,6 +34,14 @@ build:
             dest: .
           - src: "src/**/*.tsx"
             dest: .
+    - image: pmofrancisco/bingo-cards-service
+      context: cards-service
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        manual:
+          - src: "*.ts"
+            dest: .
 deploy:
   kubectl:
     manifests:

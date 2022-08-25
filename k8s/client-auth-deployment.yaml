@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-auth-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: client-auth
+  template:
+    metadata:
+      labels:
+        component: client-auth
+    spec:
+      containers:
+        - name: client-auth
+          image: pmofrancisco/poc-mfe-k8s-client-auth
+          ports:
+            - containerPort: 3000

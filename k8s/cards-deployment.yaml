@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cards-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: cards-service
+  template:
+    metadata:
+      labels:
+        component: cards-service
+    spec:
+      containers:
+        - name: cards-service
+          image: pmofrancisco/bingo-cards-service
+          ports:
+            - containerPort: 3000

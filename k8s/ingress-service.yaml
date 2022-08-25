@@ -16,14 +16,21 @@ spec:
                 name: client-container-cluster-ip-service
                 port:
                   number: 3000
-          - path: /auth/?(.*)
+          - path: /api/cards/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: cards-cluster-ip-service
+                port:
+                  number: 3000
+          - path: /mfe/auth/?(.*)
             pathType: Prefix
             backend:
               service:
                 name: client-auth-cluster-ip-service
                 port:
                   number: 3000
-          - path: /dashboard/?(.*)
+          - path: /mfe/dashboard/?(.*)
             pathType: Prefix
             backend:
               service:

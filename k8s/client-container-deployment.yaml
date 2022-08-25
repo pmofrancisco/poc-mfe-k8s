@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-container-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: client-container
+  template:
+    metadata:
+      labels:
+        component: client-container
+    spec:
+      containers:
+        - name: client-container
+          image: pmofrancisco/poc-mfe-k8s-client-container
+          ports:
+            - containerPort: 3000
