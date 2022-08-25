@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: cards-service
-          image: pmofrancisco/bingo-cards-service
+          image: pmofrancisco/poc-mfe-k8s-cards-service
           ports:
             - containerPort: 3000

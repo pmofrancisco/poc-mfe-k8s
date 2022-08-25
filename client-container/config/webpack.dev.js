@@ -6,9 +6,10 @@ const packageJson = require('../package.json');
 const devConfig = {
   mode: 'development',
   output: {
-    publicPath: 'http://localhost:3000/'
+    publicPath: 'http://localhost/'
   },
   devServer: {
+    host: '0.0.0.0',
     port: 3000,
     historyApiFallback: {
       index: '/index.html',
@@ -18,8 +19,8 @@ const devConfig = {
     new ModuleFederationPlugin({
       name: 'container',
       remotes: {
-        auth: 'auth@http://localhost:3001/remoteEntry.js',
-        dashboard: 'dashboard@http://localhost:3002/remoteEntry.js',
+        auth: 'auth@http://localhost/mfe/auth/remoteEntry.js',
+        dashboard: 'dashboard@http://localhost/mfe/dashboard/remoteEntry.js',
       },
       shared: packageJson.dependencies,
     }),
